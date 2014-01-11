@@ -19,7 +19,9 @@ module Openlibrary
       when 404
         raise Openlibrary::NotFound
       when 302
-        raise Openlibrary::Redirect
+        response.follow_redirection(request, result, &block)
+      when 301
+        response.follow_redirection(request, result, &block)
       end
     end
 
